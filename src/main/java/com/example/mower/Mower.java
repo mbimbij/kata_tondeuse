@@ -25,12 +25,16 @@ public class Mower {
           position.setX(position.getX() - 1);
         }else if (isFacingEast() && !isFacingEastBorder()){
           position.setX(position.getX() + 1);
-        }else if (isFacingSouth()){
+        }else if (isFacingSouth() && !isFacingSouthBorder()){
           position.setY(position.getY() - 1);
         }
         break;
 
     }
+  }
+
+  private boolean isFacingSouthBorder() {
+    return position.getY() <= 0;
   }
 
   private boolean isFacingSouth() {
@@ -54,7 +58,7 @@ public class Mower {
   }
 
   private boolean isFacingNorthBorder() {
-    return position.getY() == environment.getYLimit();
+    return position.getY() >= environment.getYLimit();
   }
 
   private boolean isFacingNorth() {

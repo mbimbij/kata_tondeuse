@@ -77,4 +77,12 @@ public class MowerTest {
     mower.execute(Command.A);
     assertThat(mower.getPosition()).isEqualTo(expectedPosition);
   }
+
+  @Test
+  void givenMowerFacingSouth_andFacingBorder_whenGoForward_thenYCoordinateDoesNotChange() {
+    Mower mower = new Mower(1, 0, S, environment);
+    Position expectedPosition = new Position(1, 0, S);
+    mower.execute(Command.A);
+    assertThat(mower.getPosition()).isEqualTo(expectedPosition);
+  }
 }

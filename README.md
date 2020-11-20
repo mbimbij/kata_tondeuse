@@ -102,3 +102,7 @@ tag `test_4_2_forward_east_with_limit`
 ### test #5.1 - avancer la tondeuse quand celle-ci fait face au sud
 
 tag `test_5_1_forward_south_without_limit`
+
+### test #5.2 - avancer la tondeuse quand celle-ci fait face au sud et est deja à la limite
+
+tag `test_5_2_forward_south_with_limit`
