@@ -56,5 +56,10 @@ Pour se lancer, on crée une tondeuse avec sa position initiale et on vérifie q
 
 ### test #2.1 - avancer la tondeuse quand celle-ci fait face au nord
 
-tag `test_2_1_forward_north_no_limit`
+tag `test_2_1_forward_north_without_limit`
+2e test, on vérifie que la coordonnée `y` de la tondeuse augmente de 1 quand elle avance en faisant face au nord.
+
+### test #2.2 - avancer la tondeuse quand celle-ci fait face au nord et est deja à la limite
+
+tag `test_2_2_forward_north_with_limit`
 2e test, on vérifie que la coordonnée `y` de la tondeuse augmente de 1 quand elle avance en faisant face au nord.
