@@ -29,7 +29,10 @@ public class Mower {
           position.setY(position.getY() - 1);
         }
         break;
-
+      case G:
+        if(isFacingNorth()){
+          position.setOrientation(W);
+        }
     }
   }
 
