@@ -2,10 +2,11 @@ package com.example.mower;
 
 public class Mower {
 
-  public static int MAX_Y;
   private Position position;
+  private Environment environment;
 
-  public Mower(int x, int y, Orientation orientation) {
+  public Mower(int x, int y, Orientation orientation, Environment environment) {
+    this.environment = environment;
     this.position = new Position(x, y, orientation);
   }
 
@@ -16,7 +17,7 @@ public class Mower {
   public void execute(Command command) {
     switch (command) {
       case A:
-        if (position.getY() != MAX_Y) {
+        if (position.getY() != environment.getYLimit()) {
           position.setY(position.getY() + 1);
         }
     }
