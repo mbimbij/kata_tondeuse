@@ -1,12 +1,12 @@
 # Kata tondeuse à gazon
 
-## 1. Lancer les tests
+## Lancer les tests
 
 `mvn clean test`
 
-## 2. Implémentation pas à pas
+## Implémentation pas à pas
 
-### 2.0 Bootstrap du projet
+### Bootstrap du projet
 
 tag `start`
 
@@ -14,7 +14,7 @@ Dans un tout premier temps, on met en place le nécessaire pour écrire des test
 
 On vérifie que l'on peut lancer un test en échec: depuis l'IDE (dans mon cas IntelliJ), et via maven en ligne de commande.
 
-### 2.1 Etude du problème
+### Etude du problème
 
 Même si on fait du TDD, d'expérience, se lancer immédiatement dans le code sans avoir étudier le problème ni avoir drafté 
 un modèle du domaine, du design ou d'un algorithme de haut niveau peut amener à perdre de vue la problématique en route 
@@ -49,12 +49,12 @@ affinera ou rectifiera par la suite, restons agiles et pragmatiques.
 On sépare la logique d'éxécution de la tondeuse et la lecture du fichier pour une meilleure testabilité du comportement 
 de la tondeuse, et par habitude, en tant que pratiquant de l'architecture héxagonale.
 
-### 2.2 test #1 - on peut créer une tondeuse avec sa position initiale
+### test #1 - on peut créer une tondeuse avec sa position initiale
 
 tag `test_1_create_mower`
 Pour se lancer, on crée une tondeuse avec sa position initiale et on vérifie que celle-ci est bien settée.
 
-### 2.3 test #2.1 - avancer la tondeuse quand celle-ci fait face au nord
+### test #2.1 - avancer la tondeuse quand celle-ci fait face au nord
 
 tag `test_2_1_forward_north_no_limit`
 2e test, on vérifie que la coordonnée `y` de la tondeuse augmente de 1 quand elle avance en faisant face au nord.
