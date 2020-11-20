@@ -12,4 +12,10 @@ public class Mower {
     return position;
   }
 
+  public void execute(Command command) {
+    switch (command) {
+      case A:
+        position.setY(position.getY() + 1);
+    }
+  }
 }

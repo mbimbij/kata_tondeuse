@@ -1,8 +1,10 @@
 package com.example.mower;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@Value
+@Data
+@AllArgsConstructor
 public class Position {
   private int x;
   private int y;

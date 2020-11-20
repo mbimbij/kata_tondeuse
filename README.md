@@ -53,3 +53,8 @@ de la tondeuse, et par habitude, en tant que pratiquant de l'architecture héxag
 
 tag `test_1_create_mower`
 Pour se lancer, on crée une tondeuse avec sa position initiale et on vérifie que celle-ci est bien settée.
+
+### 2.3 test #2.1 - avancer la tondeuse quand celle-ci fait face au nord
+
+tag `test_2_1_forward_north_no_limit`
+2e test, on vérifie que la coordonnée `y` de la tondeuse augmente de 1 quand elle avance en faisant face au nord.

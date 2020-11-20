@@ -12,4 +12,12 @@ public class MowerTest {
     Position expectedPosition = new Position(1, 2, N);
     assertThat(mower.getPosition()).isEqualTo(expectedPosition);
   }
+
+  @Test
+  void givenMowerNotFacingLimit_whenGoForward_thenYCoordinateIncreasesBy1() {
+    Mower mower = new Mower(1, 2, N);
+    Position expectedPosition = new Position(1, 3, N);
+    mower.execute(Command.A);
+    assertThat(mower.getPosition()).isEqualTo(expectedPosition);
+  }
 }
