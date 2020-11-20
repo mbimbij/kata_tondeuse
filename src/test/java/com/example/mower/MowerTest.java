@@ -69,4 +69,12 @@ public class MowerTest {
     mower.execute(Command.A);
     assertThat(mower.getPosition()).isEqualTo(expectedPosition);
   }
+
+  @Test
+  void givenMowerFacingSouth_whenGoForward_thenYCoordinateDecreasesBy1() {
+    Mower mower = new Mower(1, 5, S, environment);
+    Position expectedPosition = new Position(1, 4, S);
+    mower.execute(Command.A);
+    assertThat(mower.getPosition()).isEqualTo(expectedPosition);
+  }
 }

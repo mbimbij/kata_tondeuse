@@ -25,10 +25,16 @@ public class Mower {
           position.setX(position.getX() - 1);
         }else if (isFacingEast() && !isFacingEastBorder()){
           position.setX(position.getX() + 1);
+        }else if (isFacingSouth()){
+          position.setY(position.getY() - 1);
         }
         break;
 
     }
+  }
+
+  private boolean isFacingSouth() {
+    return position.getOrientation() == S;
   }
 
   private boolean isFacingEastBorder() {
