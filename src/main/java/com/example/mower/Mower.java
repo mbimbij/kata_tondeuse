@@ -1,5 +1,7 @@
 package com.example.mower;
 
+import static com.example.mower.Orientation.*;
+
 public class Mower {
 
   private Position position;
@@ -21,10 +23,16 @@ public class Mower {
           position.setY(position.getY() + 1);
         }else if (isFacingWest() && !isFacingWestBorder()){
           position.setX(position.getX() - 1);
+        }else if (isFacingEast()){
+          position.setX(position.getX() + 1);
         }
         break;
 
     }
+  }
+
+  private boolean isFacingEast() {
+    return position.getOrientation() == E;
   }
 
   private boolean isFacingWestBorder() {
@@ -32,7 +40,7 @@ public class Mower {
   }
 
   private boolean isFacingWest() {
-    return position.getOrientation() == Orientation.W;
+    return position.getOrientation() == W;
   }
 
   private boolean isFacingNorthBorder() {
@@ -40,6 +48,6 @@ public class Mower {
   }
 
   private boolean isFacingNorth() {
-    return position.getOrientation() == Orientation.N;
+    return position.getOrientation() == N;
   }
 }
