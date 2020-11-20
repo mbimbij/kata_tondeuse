@@ -47,7 +47,7 @@ public class MowerTest {
   }
 
   @Test
-  void givenMowerFacingWest_andFacingLimit_whenGoForward_thenXCoordinateDecreasesBy1() {
+  void givenMowerFacingWest_andFacingLimit_whenGoForward_thenXCoordinateDoesNotChange() {
     Mower mower = new Mower(0, 5, W, environment);
     Position expectedPosition = new Position(0, 5, W);
     mower.execute(Command.A);
@@ -58,6 +58,14 @@ public class MowerTest {
   void givenMowerFacingEast_whenGoForward_thenXCoordinateDecreasesBy1() {
     Mower mower = new Mower(1, 5, E, environment);
     Position expectedPosition = new Position(2, 5, E);
+    mower.execute(Command.A);
+    assertThat(mower.getPosition()).isEqualTo(expectedPosition);
+  }
+
+  @Test
+  void givenMowerFacingEast_andFacingBorder_whenGoForward_thenXCoordinateDoesNotChange() {
+    Mower mower = new Mower(5, 5, E, environment);
+    Position expectedPosition = new Position(5, 5, E);
     mower.execute(Command.A);
     assertThat(mower.getPosition()).isEqualTo(expectedPosition);
   }

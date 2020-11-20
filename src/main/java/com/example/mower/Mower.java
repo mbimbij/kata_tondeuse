@@ -23,12 +23,16 @@ public class Mower {
           position.setY(position.getY() + 1);
         }else if (isFacingWest() && !isFacingWestBorder()){
           position.setX(position.getX() - 1);
-        }else if (isFacingEast()){
+        }else if (isFacingEast() && !isFacingEastBorder()){
           position.setX(position.getX() + 1);
         }
         break;
 
     }
+  }
+
+  private boolean isFacingEastBorder() {
+    return position.getX() >= environment.getXLimit();
   }
 
   private boolean isFacingEast() {
