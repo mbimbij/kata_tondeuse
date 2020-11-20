@@ -47,4 +47,11 @@ public class MowerTest {
     assertThat(mower.getPosition()).isEqualTo(expectedPosition);
   }
 
+  @Test
+  void givenMowerFacingWest_andFacingLimit_whenGoForward_thenXCoordinateDecreasesBy1() {
+    Mower mower = new Mower(0, 5, W, environment);
+    Position expectedPosition = new Position(0, 5, W);
+    mower.execute(Command.A);
+    assertThat(mower.getPosition()).isEqualTo(expectedPosition);
+  }
 }

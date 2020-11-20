@@ -86,3 +86,7 @@ L'idée de l'algo résolvant notre problème devant dans les grandes lignes quel
 ### test #3.1 - avancer la tondeuse quand celle-ci fait face à l'ouest
 
 tag `test_3_1_forward_west_without_limit`
+
+### test #3.2 - avancer la tondeuse quand celle-ci fait face à l'ouest et est deja à la limite
+
+tag `test_3_2_forward_west_with_limit`

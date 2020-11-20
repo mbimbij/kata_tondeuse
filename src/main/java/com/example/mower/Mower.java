@@ -19,12 +19,16 @@ public class Mower {
       case A:
         if (isFacingNorth() && !isFacingNorthBorder()) {
           position.setY(position.getY() + 1);
-        }else if (isFacingWest()){
+        }else if (isFacingWest() && !isFacingWestBorder()){
           position.setX(position.getX() - 1);
         }
         break;
 
     }
+  }
+
+  private boolean isFacingWestBorder() {
+    return position.getX() <= 0;
   }
 
   private boolean isFacingWest() {
