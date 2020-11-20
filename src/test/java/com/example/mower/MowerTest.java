@@ -25,14 +25,14 @@ public class MowerTest {
   }
 
   @Test
-  void givenMowerNotFacingLimit_whenGoForward_thenYCoordinateIncreasesBy1() {
+  void givenMowerFacingNorth_andNotFacingLimit_whenGoForward_thenYCoordinateIncreasesBy1() {
     Position expectedPosition = new Position(1, 3, N);
     mower.execute(Command.A);
     assertThat(mower.getPosition()).isEqualTo(expectedPosition);
   }
 
   @Test
-  void givenMowerFacingLimit_whenGoForward_thenYCoordinateDoesNotChange() {
+  void givenMowerFacingNorth_andFacingLimit_whenGoForward_thenYCoordinateDoesNotChange() {
     Mower mower = new Mower(1, 5, N, environment);
     Position expectedPosition = new Position(1, 5, N);
     mower.execute(Command.A);
@@ -46,4 +46,5 @@ public class MowerTest {
     mower.execute(Command.A);
     assertThat(mower.getPosition()).isEqualTo(expectedPosition);
   }
+
 }

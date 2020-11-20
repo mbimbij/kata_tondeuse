@@ -17,13 +17,25 @@ public class Mower {
   public void execute(Command command) {
     switch (command) {
       case A:
-        if (position.getOrientation() == Orientation.N && position.getY() != environment.getYLimit()) {
+        if (isFacingNorth() && !isFacingNorthBorder()) {
           position.setY(position.getY() + 1);
-        }else if (position.getOrientation() == Orientation.W){
+        }else if (isFacingWest()){
           position.setX(position.getX() - 1);
         }
         break;
 
     }
+  }
+
+  private boolean isFacingWest() {
+    return position.getOrientation() == Orientation.W;
+  }
+
+  private boolean isFacingNorthBorder() {
+    return position.getY() == environment.getYLimit();
+  }
+
+  private boolean isFacingNorth() {
+    return position.getOrientation() == Orientation.N;
   }
 }
