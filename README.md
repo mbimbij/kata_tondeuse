@@ -63,3 +63,26 @@ tag `test_2_1_forward_north_without_limit`
 
 tag `test_2_2_forward_north_with_limit`
 2e test, on vérifie que la coordonnée `y` de la tondeuse augmente de 1 quand elle avance en faisant face au nord.
+
+Refacto:
+
+Lors de cette étape, on a modifié l'idée du design de la façon suivante:
+
+![](docs/2.0-intro-environment.png)
+
+Initialement, les limites de l'environnement étaient définies comme variables statiques de la classe `Mower`.
+Après réflexion, elles ne semblent pas être des attributs des tondeuses, mais externes aux tondeuses.
+
+L'idée de l'algo résolvant notre problème devant dans les grandes lignes quelque chose comme:
+
+```
+- On crée l'environnement à partir de la 1e ligne du fichier d'entrée
+- jusqu'à la fin du fichier:
+    - On crée un tondeuse à partir de la 2e (2i -ème) ligne
+    - On récupère et éxécute les instructions sur la tondeuse à partir de la 3e (2i+1 -ème) ligne
+    - On récupère la position de la tondeuse et on l'écrit dans le fichier de sortie
+```
+
+### test #3.1 - avancer la tondeuse quand celle-ci fait face à l'ouest
+
+tag `test_3_1_forward_west_without_limit`

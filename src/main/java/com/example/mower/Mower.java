@@ -17,9 +17,13 @@ public class Mower {
   public void execute(Command command) {
     switch (command) {
       case A:
-        if (position.getY() != environment.getYLimit()) {
+        if (position.getOrientation() == Orientation.N && position.getY() != environment.getYLimit()) {
           position.setY(position.getY() + 1);
+        }else if (position.getOrientation() == Orientation.W){
+          position.setX(position.getX() - 1);
         }
+        break;
+
     }
   }
 }
