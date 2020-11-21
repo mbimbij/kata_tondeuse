@@ -156,6 +156,38 @@ Si le fichier existe bien, alors on peut créer une `MowerApplication` et aucune
 
 tag `test_9_1_create_MowerApplication_with_existing_file`
 
+"make the implicits explicit": 
+
+Pourquoi ce test ?
+Et bien à ce stade, dans les grandes lignes, j'imagine l'application de la manière suivante:
+
+![](docs/3.0-mowerApplication-initial-idea.png)
+
+Où main ressemblerait à:
+
+``` java
+public static void main(String[] args) {
+    String inputFile = "...";
+    String outputFile = "...";
+    MowerApplication mowerApplication = new MowerApplication(inputFile, outputFile);
+    mowerApplication.run();
+}
+``` 
+
+et `MowerApplication.run()` ressemblerait à:
+
+``` java
+public void run(){
+    Iterator<String> inputLines = inputFile.readLines();
+    Environment environment = createEnvironment(inputLines.first());
+    while (inputLines.hasNext()){
+      Mower mower = createMower(inputLines.next(),environment);
+      createInstructions(inputLines.next()).foreach(mower::execute);
+      outputFile.append(mower.getPosition());
+    }
+  }
+```
+
 ### test #9.2 - créer une `MowerApplication`, mais le fichier n'existe pas
 
 On lève une exception si le fichier n'existe pas.
@@ -168,3 +200,7 @@ tag `test_9_2_create_MowerApplication_with_non_existing_file`
 ### test #9.3 - créer un environnement à partir d'une chaîne de caractères
 
 tag `test_9_3_create_environment_from_string`
+
+### test #9.4 - créer une tondeuse à partir d'une chaîne de caractères
+
+tag `test_9_4_create_mower_from_string`

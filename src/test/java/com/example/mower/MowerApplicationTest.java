@@ -1,8 +1,12 @@
 package com.example.mower;
 
 import org.assertj.core.api.SoftAssertions;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static com.example.mower.Orientation.N;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MowerApplicationTest {
 
@@ -10,17 +14,17 @@ public class MowerApplicationTest {
 
   @Test
   void givenExistingFile_whenCreateMowerApplication_thenExceptionIsNotThrown() {
-    Assertions.assertDoesNotThrow(() -> new MowerApplication(inputFilePathString));
+    assertDoesNotThrow(() -> new MowerApplication(inputFilePathString));
   }
 
   @Test
   void givenNonExistingFile_whenCreateMowerApplication_thenExceptionIsThrown() {
     String inputFilePathString = "src/test/resources/notExistingFile.txt";
-    Assertions.assertThrows(RuntimeException.class, () -> new MowerApplication(inputFilePathString));
+    assertThrows(RuntimeException.class, () -> new MowerApplication(inputFilePathString));
   }
 
   @Test
-  void canCreateEnvironmentFromFirstLine() {
+  void canCreateEnvironmentFromString() {
     String environmentString = "5 6";
     MowerApplication mowerApplication = new MowerApplication(inputFilePathString);
     Environment environment = mowerApplication.createEnvironment(environmentString);
@@ -28,5 +32,14 @@ public class MowerApplicationTest {
       softAssertions.assertThat(environment.getXLimit()).isEqualTo(5);
       softAssertions.assertThat(environment.getYLimit()).isEqualTo(6);
     });
+  }
+
+  @Test
+  void canCreateMowerFromString() {
+    String mowerString = "1 2 N";
+    MowerApplication mowerApplication = new MowerApplication(inputFilePathString);
+    Mower mower = mowerApplication.createMower(mowerString, null);
+    Position expectedInitialPosition = new Position(1, 2, N);
+    assertThat(mower.getPosition()).isEqualTo(expectedInitialPosition);
   }
 }
