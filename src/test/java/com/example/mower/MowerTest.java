@@ -161,4 +161,27 @@ public class MowerTest {
     }
   }
 
+  @Nested
+  class ExecuteCommandSequence{
+    @Test
+    void givenPosition_1_2_N_whenExecuteFirstSequence_thenPosition_1_3_N() {
+      // GIVEN
+      Mower mower = new Mower(1, 2, N, environment);
+
+      // WHEN
+      mower.execute(G);
+      mower.execute(A);
+      mower.execute(G);
+      mower.execute(A);
+      mower.execute(G);
+      mower.execute(A);
+      mower.execute(G);
+      mower.execute(A);
+      mower.execute(A);
+
+      // THEN
+      Position expectedPosition = new Position(1, 3, N);
+      assertThat(mower.getPosition()).isEqualTo(expectedPosition);
+    }
+  }
 }

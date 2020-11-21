@@ -138,3 +138,7 @@ tag `test_7_3_turn_right_facing_south`
 ### test #7.4 - tourner la tondeuse à droite quand celle-ci fait face à l'ouest
 
 tag `test_7_4_turn_right_facing_west`
+
+### test #8.1 - éxécuter la première séquence de l'énoncé 
+
+tag `test_8_1_execute_first_command_sequence`
