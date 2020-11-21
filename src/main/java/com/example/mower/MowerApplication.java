@@ -1,23 +1,50 @@
 package com.example.mower;
 
+import io.vavr.control.Try;
+
 import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MowerApplication {
   private final Path inputFilePath;
+  private final Path outputFilePath;
 
-  public MowerApplication(String inputFilePathString) {
+  public MowerApplication(String inputFilePathString, String outputFilePathString) {
     inputFilePath = Paths.get(inputFilePathString);
     if (!Files.exists(inputFilePath)) {
       throw new RuntimeException(new FileNotFoundException(inputFilePathString));
     }
+
+    outputFilePath = Paths.get(outputFilePathString);
+    if (!Files.exists(outputFilePath)) {
+      Try.of(() -> Files.createFile(outputFilePath)).get();
+    }
+  }
+
+  public void run() {
+    List<String> inputFileContent = Try.of(() -> Files.readAllLines(inputFilePath)).get();
+    if (inputFileContent.isEmpty()) {
+      throw new FileFormatException(inputFilePath.toString() + " is empty");
+    }
+    String environmentString = inputFileContent.stream().findFirst().orElseThrow(() -> new FileFormatException("input is unexpectedly empty"));
+    Environment environment = createEnvironment(environmentString);
+    Iterator<String> inputFileIterator = inputFileContent.stream().skip(1).iterator();
+    while (inputFileIterator.hasNext()) {
+      Mower mower = createMower(inputFileIterator.next(), environment);
+      createInstructions(inputFileIterator.next()).forEach(mower::execute);
+      Try.of(() -> Files.writeString(outputFilePath, formatPosition(mower.getPosition()) + System.lineSeparator(), StandardOpenOption.APPEND));
+    }
+  }
+
+  private CharSequence formatPosition(Position position) {
+    return String.join(" ", String.valueOf(position.getX()), String.valueOf(position.getY()), position.getOrientation().name());
   }
 
   public Environment createEnvironment(String environmentString) {

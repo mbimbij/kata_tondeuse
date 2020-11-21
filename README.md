@@ -208,3 +208,7 @@ tag `test_9_4_create_mower_from_string`
 ### test #9.5 - créer des commandes à partir d'une chaîne de caractères
 
 tag `test_9_5_create_commands_from_string`
+
+### test #10 - On assemble tout
+
+tag `test_10_putting_it_all_together`
