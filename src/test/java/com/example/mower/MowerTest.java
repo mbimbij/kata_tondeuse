@@ -10,22 +10,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MowerTest {
 
   private Environment environment;
-  private Mower mower;
 
   @BeforeEach
   void setUp() {
     environment = new Environment(5,5);
-    mower = new Mower(1, 2, N, environment);
   }
 
   @Test
   public void whenCreateMowerWithInitialPosition_thenPositionisAsExpected() {
+    Mower mower = new Mower(1, 2, N, environment);
     Position expectedPosition = new Position(1, 2, N);
     assertThat(mower.getPosition()).isEqualTo(expectedPosition);
   }
 
   @Test
   void givenMowerFacingNorth_andNotFacingLimit_whenGoForward_thenYCoordinateIncreasesBy1() {
+    Mower mower = new Mower(1, 2, N, environment);
     Position expectedPosition = new Position(1, 3, N);
     mower.execute(A);
     assertThat(mower.getPosition()).isEqualTo(expectedPosition);
