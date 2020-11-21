@@ -164,3 +164,7 @@ On teste que:
 Si le fichier n'existe pas, alors une exception est levée
 
 tag `test_9_2_create_MowerApplication_with_non_existing_file`
+
+### test #9.3 - créer un environnement à partir d'une chaîne de caractères
+
+tag `test_9_3_create_environment_from_string`
