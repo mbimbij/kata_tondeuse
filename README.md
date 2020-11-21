@@ -155,3 +155,12 @@ On teste que:
 Si le fichier existe bien, alors on peut créer une `MowerApplication` et aucune exception n'est levée
 
 tag `test_9_1_create_MowerApplication_with_existing_file`
+
+### test #9.2 - créer une `MowerApplication`, mais le fichier n'existe pas
+
+On lève une exception si le fichier n'existe pas.
+On teste que:
+
+Si le fichier n'existe pas, alors une exception est levée
+
+tag `test_9_2_create_MowerApplication_with_non_existing_file`
