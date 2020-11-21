@@ -39,6 +39,12 @@ public class Mower {
         } else if (isFacingEast()) {
           position.setOrientation(N);
         }
+        break;
+      case D:
+        if (isFacingNorth()) {
+          position.setOrientation(E);
+        }
+        break;
     }
   }
 

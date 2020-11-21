@@ -1,5 +1,5 @@
 package com.example.mower;
 
 public enum Command {
-  G, A
+  G, D, A
 }

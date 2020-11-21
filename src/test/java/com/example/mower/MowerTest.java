@@ -3,8 +3,7 @@ package com.example.mower;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.example.mower.Command.A;
-import static com.example.mower.Command.G;
+import static com.example.mower.Command.*;
 import static com.example.mower.Orientation.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -117,6 +116,14 @@ public class MowerTest {
     Mower mower = new Mower(1, 5, E, environment);
     Position expectedPosition = new Position(1, 5, N);
     mower.execute(G);
+    assertThat(mower.getPosition()).isEqualTo(expectedPosition);
+  }
+
+  @Test
+  void givenMowerFacingNorth_whenTurnRIght_thenFacingEast() {
+    Mower mower = new Mower(1, 5, N, environment);
+    Position expectedPosition = new Position(1, 5, E);
+    mower.execute(D);
     assertThat(mower.getPosition()).isEqualTo(expectedPosition);
   }
 }
