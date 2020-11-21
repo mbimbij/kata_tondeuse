@@ -185,7 +185,7 @@ public class MowerTest {
     }
 
     @Test
-    void givenPosition_3_3_E_whenExecuteSSequence_thenPosition_5_1_E() {
+    void givenPosition_3_3_E_whenExecuteSecondSequence_thenPosition_5_1_E() {
       // GIVEN
       Mower mower = new Mower(3, 3, E, environment);
 
