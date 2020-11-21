@@ -32,6 +32,8 @@ public class Mower {
       case G:
         if(isFacingNorth()){
           position.setOrientation(W);
+        } else if(isFacingWest()){
+          position.setOrientation(S);
         }
     }
   }
