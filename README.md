@@ -130,3 +130,7 @@ tag `test_7_1_turn_right_facing_north`
 ### test #7.2 - tourner la tondeuse à droite quand celle-ci fait face à l'est
 
 tag `test_7_2_turn_right_facing_east`
+
+### test #7.3 - tourner la tondeuse à droite quand celle-ci fait face au sud
+
+tag `test_7_3_turn_right_facing_south`
