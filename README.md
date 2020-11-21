@@ -146,3 +146,12 @@ tag `test_8_1_execute_first_command_sequence`
 ### test #8.2 - éxécuter la deuxième séquence de l'énoncé 
 
 tag `test_8_2_execute_second_command_sequence`
+
+### test #9.1 - créer une `MowerApplication` à partir du chemin d'un fichier d'entrée
+
+On lève une exception si le fichier n'existe pas.
+On teste que:
+
+Si le fichier existe bien, alors on peut créer une `MowerApplication` et aucune exception n'est levée
+
+tag `test_9_1_create_MowerApplication_with_existing_file`
