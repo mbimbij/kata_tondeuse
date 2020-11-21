@@ -179,7 +179,7 @@ et `MowerApplication.run()` ressemblerait à:
 ``` java
 public void run(){
     Iterator<String> inputLines = inputFile.readLines();
-    Environment environment = createEnvironment(inputLines.first());
+    Environment environment = createEnvironment(inputLines.next());
     while (inputLines.hasNext()){
       Mower mower = createMower(inputLines.next(),environment);
       createInstructions(inputLines.next()).foreach(mower::execute);
@@ -204,3 +204,7 @@ tag `test_9_3_create_environment_from_string`
 ### test #9.4 - créer une tondeuse à partir d'une chaîne de caractères
 
 tag `test_9_4_create_mower_from_string`
+
+### test #9.5 - créer des commandes à partir d'une chaîne de caractères
+
+tag `test_9_5_create_commands_from_string`

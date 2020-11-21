@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MowerApplication {
   private final Path inputFilePath;
@@ -42,4 +44,9 @@ public class MowerApplication {
   }
 
 
+  public List<Command> createInstructions(String commandsString) {
+    return Arrays.stream(commandsString.split("|"))
+        .map(Command::valueOf)
+        .collect(Collectors.toList());
+  }
 }
