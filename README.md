@@ -65,8 +65,8 @@ On vérifie que l'on peut lancer un test en échec: depuis l'IDE (dans mon cas I
 
 ### Etude du problème
 
-Même si on fait du TDD, d'expérience, se lancer immédiatement dans le code sans avoir étudier le problème ni avoir drafté 
-un modèle du domaine, du design ou d'un algorithme de haut niveau peut amener à perdre de vue la problématique en route 
+Même si on fait du TDD, d'expérience, se lancer immédiatement dans le code sans avoir effectué une étude préliminaire 
+du problème peut amener à perdre de vue la problématique en cours de route 
 et rendre le processus pénible et moins efficace.
 
 Il s'agit de clarifier sa compréhension du problème, et les hypothèses implicites que l'on peut faire sur la manière 
