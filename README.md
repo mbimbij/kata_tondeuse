@@ -1,10 +1,59 @@
 # Kata tondeuse à gazon
 
+# Sommaire
+
+- [Lancer les tests](#lancer-les-tests)
+- [Liste des tags (tests)](#liste-des-tags-tests)
+- [Implémentation pas à pas](#implementation-pas-a-pas)
+
 ## Lancer les tests
 
 `mvn clean test`
 
-## Implémentation pas à pas
+## Liste des tags (tests)
+
+"Start"
+- init
+- test_1_create_mower
+
+Avancer
+- test_2_1_forward_north_without_limit
+- test_2_2_forward_north_with_limit
+- test_3_1_forward_west_without_limit
+- test_3_2_forward_west_with_limit
+- test_4_1_forward_east_without_limit
+- test_4_2_forward_east_with_limit
+- test_5_1_forward_south_without_limit
+- test_5_2_forward_south_with_limit
+
+Tourner à gauche
+- test_6_1_turn_left_facing_north
+- test_6_2_turn_left_facing_west
+- test_6_3_turn_left_facing_south
+- test_6_4_turn_left_facing_east
+
+Tourner à droite
+- test_7_1_turn_right_facing_north
+- test_7_2_turn_right_facing_east
+- test_7_3_turn_right_facing_south
+- test_7_4_turn_right_facing_west
+
+Exécuter les séquences d'instructions de l'énoncé
+- test_8_1_execute_first_command_sequence
+- test_8_2_execute_second_command_sequence
+
+"Left side", lecture du fichier d'entrée, éxécution des tondeuses et écriture du fichier de sortie 
+- test_9_1_create_MowerApplication_with_existing_file
+- test_9_2_create_MowerApplication_with_non_existing_afile
+- test_9_3_create_environment_from_string
+- test_9_4_create_mower_from_string
+- test_9_5_create_commands_from_string
+
+"Fin" (avec `HEAD`)
+- test_10_putting_it_all_together
+
+
+## Implementation pas a pas
 
 ### Bootstrap du projet
 
