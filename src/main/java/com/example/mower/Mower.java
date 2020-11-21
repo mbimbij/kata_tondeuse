@@ -61,6 +61,8 @@ public class Mower {
       faceSouth();
     } else if (isFacingSouth()) {
       faceWest();
+    } else if (isFacingWest()) {
+      faceNorth();
     }
   }
 
