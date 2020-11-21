@@ -19,33 +19,77 @@ public class Mower {
   public void execute(Command command) {
     switch (command) {
       case A:
-        if (isFacingNorth() && !isFacingNorthBorder()) {
-          position.setY(position.getY() + 1);
-        } else if (isFacingWest() && !isFacingWestBorder()) {
-          position.setX(position.getX() - 1);
-        } else if (isFacingEast() && !isFacingEastBorder()) {
-          position.setX(position.getX() + 1);
-        } else if (isFacingSouth() && !isFacingSouthBorder()) {
-          position.setY(position.getY() - 1);
-        }
+        goForward();
         break;
       case G:
-        if (isFacingNorth()) {
-          position.setOrientation(W);
-        } else if (isFacingWest()) {
-          position.setOrientation(S);
-        } else if (isFacingSouth()) {
-          position.setOrientation(E);
-        } else if (isFacingEast()) {
-          position.setOrientation(N);
-        }
+        turnLeft();
         break;
       case D:
-        if (isFacingNorth()) {
-          position.setOrientation(E);
-        }
+        turnRight();
         break;
     }
+  }
+
+  private void goForward() {
+    if (isFacingNorth() && !isFacingNorthBorder()) {
+      goForwardUp();
+    } else if (isFacingWest() && !isFacingWestBorder()) {
+      goForwardLeft();
+    } else if (isFacingEast() && !isFacingEastBorder()) {
+      goForwardRight();
+    } else if (isFacingSouth() && !isFacingSouthBorder()) {
+      goForwardDown();
+    }
+  }
+
+  private void turnLeft() {
+    if (isFacingNorth()) {
+      faceWest();
+    } else if (isFacingWest()) {
+      faceSouth();
+    } else if (isFacingSouth()) {
+      faceEast();
+    } else if (isFacingEast()) {
+      faceNorth();
+    }
+  }
+
+  private void turnRight() {
+    if (isFacingNorth()) {
+      faceEast();
+    }
+  }
+
+  private void faceEast() {
+    position.setOrientation(E);
+  }
+
+  private void faceNorth() {
+    position.setOrientation(N);
+  }
+
+  private void faceSouth() {
+    position.setOrientation(S);
+  }
+
+  private void faceWest() {
+    position.setOrientation(W);
+  }
+
+  private void goForwardDown() {
+    position.setY(position.getY() - 1);
+  }
+
+  private void goForwardRight() {
+    position.setX(position.getX() + 1);
+  }
+
+  private void goForwardLeft() {
+    position.setX(position.getX() - 1);
+  }
+
+  private void goForwardUp() {
+    position.setY(position.getY() + 1);
   }
 
   private boolean isFacingSouthBorder() {
