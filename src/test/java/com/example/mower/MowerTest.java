@@ -120,9 +120,17 @@ public class MowerTest {
   }
 
   @Test
-  void givenMowerFacingNorth_whenTurnRIght_thenFacingEast() {
+  void givenMowerFacingNorth_whenTurnRight_thenFacingEast() {
     Mower mower = new Mower(1, 5, N, environment);
     Position expectedPosition = new Position(1, 5, E);
+    mower.execute(D);
+    assertThat(mower.getPosition()).isEqualTo(expectedPosition);
+  }
+
+  @Test
+  void givenMowerFacingEast_whenTurnRight_thenFacingSouth() {
+    Mower mower = new Mower(1, 5, E, environment);
+    Position expectedPosition = new Position(1, 5, S);
     mower.execute(D);
     assertThat(mower.getPosition()).isEqualTo(expectedPosition);
   }

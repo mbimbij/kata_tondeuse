@@ -57,6 +57,8 @@ public class Mower {
   private void turnRight() {
     if (isFacingNorth()) {
       faceEast();
+    } else if (isFacingEast()) {
+      faceSouth();
     }
   }
 
