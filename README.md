@@ -142,3 +142,7 @@ tag `test_7_4_turn_right_facing_west`
 ### test #8.1 - éxécuter la première séquence de l'énoncé 
 
 tag `test_8_1_execute_first_command_sequence`
+
+### test #8.2 - éxécuter la deuxième séquence de l'énoncé 
+
+tag `test_8_2_execute_second_command_sequence`

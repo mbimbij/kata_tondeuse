@@ -183,5 +183,27 @@ public class MowerTest {
       Position expectedPosition = new Position(1, 3, N);
       assertThat(mower.getPosition()).isEqualTo(expectedPosition);
     }
+
+    @Test
+    void givenPosition_3_3_E_whenExecuteSSequence_thenPosition_5_1_E() {
+      // GIVEN
+      Mower mower = new Mower(3, 3, E, environment);
+
+      // WHEN
+      mower.execute(A);
+      mower.execute(A);
+      mower.execute(D);
+      mower.execute(A);
+      mower.execute(A);
+      mower.execute(D);
+      mower.execute(A);
+      mower.execute(D);
+      mower.execute(D);
+      mower.execute(A);
+
+      // THEN
+      Position expectedPosition = new Position(5, 1, E);
+      assertThat(mower.getPosition()).isEqualTo(expectedPosition);
+    }
   }
 }
