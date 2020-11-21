@@ -21,19 +21,21 @@ public class Mower {
       case A:
         if (isFacingNorth() && !isFacingNorthBorder()) {
           position.setY(position.getY() + 1);
-        }else if (isFacingWest() && !isFacingWestBorder()){
+        } else if (isFacingWest() && !isFacingWestBorder()) {
           position.setX(position.getX() - 1);
-        }else if (isFacingEast() && !isFacingEastBorder()){
+        } else if (isFacingEast() && !isFacingEastBorder()) {
           position.setX(position.getX() + 1);
-        }else if (isFacingSouth() && !isFacingSouthBorder()){
+        } else if (isFacingSouth() && !isFacingSouthBorder()) {
           position.setY(position.getY() - 1);
         }
         break;
       case G:
-        if(isFacingNorth()){
+        if (isFacingNorth()) {
           position.setOrientation(W);
-        } else if(isFacingWest()){
+        } else if (isFacingWest()) {
           position.setOrientation(S);
+        } else if (isFacingSouth()) {
+          position.setOrientation(E);
         }
     }
   }
