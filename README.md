@@ -122,7 +122,7 @@ Lors de cette étape, on a modifié l'idée du design de la façon suivante:
 Initialement, les limites de l'environnement étaient définies comme variables statiques de la classe `Mower`.
 Après réflexion, elles ne semblent pas être des attributs des tondeuses, mais externes aux tondeuses.
 
-L'idée de l'algo résolvant notre problème devant dans les grandes lignes quelque chose comme:
+L'idée de l'algo résolvant notre problème devenant dans les grandes lignes quelque chose comme:
 
 ```
 - On crée l'environnement à partir de la 1e ligne du fichier d'entrée
