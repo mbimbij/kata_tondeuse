@@ -26,6 +26,10 @@ public class MowerApplicationTest {
 
   @BeforeEach
   void setUp() throws IOException {
+    clearOuputFile();
+  }
+
+  private void clearOuputFile() throws IOException {
     Path outputFilePath = Paths.get(outputFilePathString);
     if (!Files.exists(outputFilePath)) {
       Files.createFile(outputFilePath);
