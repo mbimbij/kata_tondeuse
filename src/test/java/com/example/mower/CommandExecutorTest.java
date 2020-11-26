@@ -35,15 +35,15 @@ public class CommandExecutorTest {
       commandExecutor.executeCommands(Collections.singleton(A));
       assertThat(commandExecutor.getPosition()).isEqualTo(expectedPosition);
     }
-//
-//    @Test
-//    void givenMowerFacingNorth_andFacingLimit_whenGoForward_thenYCoordinateDoesNotChange() {
-//      Mower mower = new Mower(1, 5, N, environment);
-//      Position expectedPosition = new Position(1, 5, N);
-//      mower.execute(A);
-//      assertThat(mower.getPosition()).isEqualTo(expectedPosition);
-//    }
-//
+
+    @Test
+    void givenMowerFacingNorth_andFacingLimit_whenGoForward_thenYCoordinateDoesNotChange() {
+      CommandExecutor commandExecutor = new CommandExecutor(new Position(1, 5, N), environment);
+      Position expectedPosition = new Position(1, 5, N);
+      commandExecutor.executeCommands(Collections.singleton(A));
+      assertThat(commandExecutor.getPosition()).isEqualTo(expectedPosition);
+    }
+
 //    @Test
 //    void givenMowerFacingWest_whenGoForward_thenXCoordinateDecreasesBy1() {
 //      Mower mower = new Mower(1, 5, W, environment);

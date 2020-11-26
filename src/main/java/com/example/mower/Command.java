@@ -20,7 +20,7 @@ public enum Command {
 //      } else if (isFacingSouth() && !isFacingSouthBorder()) {
 //        goForwardDown();
 //      }
-      return null;
+      else return new Position(position.getX(), position.getY(), position.getOrientation());
     }
 
     private Position goForwardUp(Position position) {
