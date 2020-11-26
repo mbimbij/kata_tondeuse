@@ -64,7 +64,7 @@ public class MowerApplicationTest {
   void canCreateMowerFromString() {
     String mowerString = "1 2 N";
     MowerApplication mowerApplication = new MowerApplication(inputFilePathString, outputFilePathString);
-    Mower mower = mowerApplication.createMower(mowerString, null);
+    IExecuteCommands mower = CommandExecutorFactory.createMower(mowerString, null);
     Position expectedInitialPosition = new Position(1, 2, N);
     assertThat(mower.getPosition()).isEqualTo(expectedInitialPosition);
   }
