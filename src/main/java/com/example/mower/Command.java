@@ -1,6 +1,7 @@
 package com.example.mower;
 
 import static com.example.mower.Orientation.N;
+import static com.example.mower.Orientation.W;
 
 public enum Command {
   A {
@@ -12,15 +13,27 @@ public enum Command {
     private Position goForward(Position position, Environment environment) {
       if (isFacingNorth(position) && !isFacingNorthBorder(position, environment)) {
         return goForwardUp(position);
+      } else if (isFacingWest(position) && !isFacingWestBorder(position)) {
+        return goForwardLeft(position);
       }
-//      else if (isFacingWest() && !isFacingWestBorder()) {
-//        goForwardLeft();
-//      } else if (isFacingEast() && !isFacingEastBorder()) {
+//      else if (isFacingEast() && !isFacingEastBorder()) {
 //        goForwardRight();
 //      } else if (isFacingSouth() && !isFacingSouthBorder()) {
 //        goForwardDown();
 //      }
       else return new Position(position.getX(), position.getY(), position.getOrientation());
+    }
+
+    private Position goForwardLeft(Position position) {
+      return new Position(position.getX() - 1, position.getY(), position.getOrientation());
+    }
+
+    private boolean isFacingWestBorder(Position position) {
+      return position.getX() <= 0;
+    }
+
+    private boolean isFacingWest(Position position) {
+      return position.getOrientation() == W;
     }
 
     private Position goForwardUp(Position position) {
