@@ -1,8 +1,10 @@
 package com.example.mower;
 
+import java.util.Collection;
+
 import static com.example.mower.Orientation.*;
 
-public class Mower {
+public class Mower implements IExecuteCommands {
 
   private Position position;
   private Environment environment;
@@ -14,6 +16,11 @@ public class Mower {
 
   public Position getPosition() {
     return position;
+  }
+
+  @Override
+  public void executeCommands(Collection<Command> commands) {
+    commands.forEach(this::execute);
   }
 
   public void execute(Command command) {

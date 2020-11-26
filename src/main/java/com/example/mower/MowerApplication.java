@@ -38,7 +38,7 @@ public class MowerApplication {
     Iterator<String> inputFileIterator = inputFileContent.stream().skip(1).iterator();
     while (inputFileIterator.hasNext()) {
       Mower mower = createMower(inputFileIterator.next(), environment);
-      createInstructions(inputFileIterator.next()).forEach(mower::execute);
+      mower.executeCommands(createInstructions(inputFileIterator.next()));
       Try.of(() -> Files.writeString(outputFilePath, formatPosition(mower.getPosition()) + System.lineSeparator(), StandardOpenOption.APPEND));
     }
   }
