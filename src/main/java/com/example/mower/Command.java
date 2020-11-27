@@ -1,7 +1,6 @@
 package com.example.mower;
 
-import static com.example.mower.Orientation.N;
-import static com.example.mower.Orientation.W;
+import static com.example.mower.Orientation.*;
 
 public enum Command {
   A {
@@ -15,13 +14,37 @@ public enum Command {
         return goForwardUp(position);
       } else if (isFacingWest(position) && !isFacingWestBorder(position)) {
         return goForwardLeft(position);
+      } else if (isFacingEast(position) && !isFacingEastBorder(position, environment)) {
+        return goForwardRight(position);
+      } else if (isFacingSouth(position) && !isFacingSouthBorder(position, environment)) {
+        return goForwardDown(position);
+      } else {
+        return new Position(position.getX(), position.getY(), position.getOrientation());
       }
-//      else if (isFacingEast() && !isFacingEastBorder()) {
-//        goForwardRight();
-//      } else if (isFacingSouth() && !isFacingSouthBorder()) {
-//        goForwardDown();
-//      }
-      else return new Position(position.getX(), position.getY(), position.getOrientation());
+    }
+
+    private Position goForwardDown(Position position) {
+      return new Position(position.getX(), position.getY() - 1, position.getOrientation());
+    }
+
+    private boolean isFacingSouthBorder(Position position, Environment environment) {
+      return position.getY() <= 0;
+    }
+
+    private boolean isFacingSouth(Position position) {
+      return position.getOrientation() == S;
+    }
+
+    private Position goForwardRight(Position position) {
+      return new Position(position.getX() + 1, position.getY(), position.getOrientation());
+    }
+
+    private boolean isFacingEastBorder(Position position, Environment environment) {
+      return position.getX() >= environment.getXLimit();
+    }
+
+    private boolean isFacingEast(Position position) {
+      return position.getOrientation() == E;
     }
 
     private Position goForwardLeft(Position position) {
