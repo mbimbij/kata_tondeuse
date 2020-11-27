@@ -1,6 +1,7 @@
 package com.example.mower;
 
 import io.vavr.control.Try;
+import lombok.SneakyThrows;
 
 import java.io.FileNotFoundException;
 import java.nio.file.Files;
@@ -15,17 +16,20 @@ import java.util.stream.Collectors;
 public class MowerApplication {
   private final Path inputFilePath;
   private final Path outputFilePath;
+  private final CommandExecutorFactory commandExecutorFactory;
 
-  public MowerApplication(String inputFilePathString, String outputFilePathString) {
+  @SneakyThrows
+  public MowerApplication(String inputFilePathString, String outputFilePathString, CommandExecutorFactory commandExecutorFactory) {
     inputFilePath = Paths.get(inputFilePathString);
     if (!Files.exists(inputFilePath)) {
-      throw new RuntimeException(new FileNotFoundException(inputFilePathString));
+      throw new FileNotFoundException(inputFilePathString);
     }
 
     outputFilePath = Paths.get(outputFilePathString);
     if (!Files.exists(outputFilePath)) {
       Try.of(() -> Files.createFile(outputFilePath)).get();
     }
+    this.commandExecutorFactory = commandExecutorFactory;
   }
 
   public void run() {
@@ -37,7 +41,7 @@ public class MowerApplication {
     Environment environment = createEnvironment(environmentString);
     Iterator<String> inputFileIterator = inputFileContent.stream().skip(1).iterator();
     while (inputFileIterator.hasNext()) {
-      IExecuteCommands mower = CommandExecutorFactory.createMower(inputFileIterator.next(), environment);
+      IExecuteCommands mower = commandExecutorFactory.createCommandExecutor(inputFileIterator.next(), environment);
       mower.executeCommands(createInstructions(inputFileIterator.next()));
       Try.of(() -> Files.writeString(outputFilePath, formatPosition(mower.getPosition()) + System.lineSeparator(), StandardOpenOption.APPEND));
     }
