@@ -43,13 +43,13 @@ public class CommandExecutorApplicationTest {
 
   @Test
   void givenExistingFile_whenCreateMowerApplication_thenExceptionIsNotThrown() {
-    assertDoesNotThrow(() -> new MowerApplication(inputFilePathString, outputFilePathString, new MowerFactory()));
+    assertDoesNotThrow(() -> new MowerApplication(inputFilePathString, outputFilePathString, new CommandExecutorFactoryImpl()));
   }
 
   @Test
   void givenNonExistingFile_whenCreateMowerApplication_thenExceptionIsThrown() {
     String inputFilePathString = "src/test/resources/notExistingFile.txt";
-    assertThrows(FileNotFoundException.class, () -> new MowerApplication(inputFilePathString, outputFilePathString, new MowerFactory()));
+    assertThrows(FileNotFoundException.class, () -> new MowerApplication(inputFilePathString, outputFilePathString, new CommandExecutorFactoryImpl()));
   }
 
   @Test
@@ -65,9 +65,9 @@ public class CommandExecutorApplicationTest {
   @Test
   void canCreateMowerFromString() {
     String mowerString = "1 2 N";
-    IExecuteCommands mower = new MowerFactory().createCommandExecutor(mowerString, null);
-    Position expectedInitialPosition = new MutablePosition(1, 2, N);
-    assertThat(mower.getPosition()).isEqualTo(expectedInitialPosition);
+    IExecuteCommands executeCommands = new CommandExecutorFactoryImpl().createCommandExecutor(mowerString, null);
+    Position expectedInitialPosition = new ImmutablePosition(1, 2, N);
+    assertThat(executeCommands.getPosition()).isEqualTo(expectedInitialPosition);
   }
 
   @Test
