@@ -34,10 +34,7 @@ public class MowerApplication {
 
   public void run() {
     List<String> inputFileContent = Try.of(() -> Files.readAllLines(inputFilePath)).get();
-    if (inputFileContent.isEmpty()) {
-      throw new FileFormatException(inputFilePath.toString() + " is empty");
-    }
-    String environmentString = inputFileContent.stream().findFirst().orElseThrow(() -> new FileFormatException("input is unexpectedly empty"));
+    String environmentString = inputFileContent.stream().findFirst().orElseThrow(() -> new FileFormatException(inputFilePath.toString() + " is empty"));
     Environment environment = createEnvironment(environmentString);
     Iterator<String> inputFileIterator = inputFileContent.stream().skip(1).iterator();
     while (inputFileIterator.hasNext()) {
