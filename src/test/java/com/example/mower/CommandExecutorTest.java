@@ -21,7 +21,7 @@ public class CommandExecutorTest {
 
   @Test
   public void whenCreateMowerWithInitialPosition_thenPositionisAsExpected() {
-    CommandExecutor mower = new CommandExecutor(new ImmutablePosition(1, 2, N), environment);
+    CommandExecutor mower = new CommandExecutor(new ImmutablePosition(1, 2, N), environment, new ExecuteCommandService());
     Position expectedPosition = new ImmutablePosition(1, 2, N);
     assertThat(mower.getPosition()).isEqualTo(expectedPosition);
   }
@@ -30,7 +30,7 @@ public class CommandExecutorTest {
   class GoForward{
     @Test
     void givenMowerFacingNorth_andNotFacingLimit_whenGoForward_thenYCoordinateIncreasesBy1() {
-      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(1, 2, N), environment);
+      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(1, 2, N), environment, new ExecuteCommandService());
       Position expectedPosition = new ImmutablePosition(1, 3, N);
       commandExecutor.executeCommands(Collections.singleton(A));
       assertThat(commandExecutor.getPosition()).isEqualTo(expectedPosition);
@@ -38,7 +38,7 @@ public class CommandExecutorTest {
 
     @Test
     void givenMowerFacingNorth_andFacingLimit_whenGoForward_thenYCoordinateDoesNotChange() {
-      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(1, 5, N), environment);
+      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(1, 5, N), environment, new ExecuteCommandService());
       Position expectedPosition = new ImmutablePosition(1, 5, N);
       commandExecutor.executeCommands(Collections.singleton(A));
       assertThat(commandExecutor.getPosition()).isEqualTo(expectedPosition);
@@ -46,7 +46,7 @@ public class CommandExecutorTest {
 
     @Test
     void givenMowerFacingWest_whenGoForward_thenXCoordinateDecreasesBy1() {
-      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(1, 5, W), environment);
+      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(1, 5, W), environment, new ExecuteCommandService());
       Position expectedPosition = new ImmutablePosition(0, 5, W);
       commandExecutor.executeCommands(Collections.singleton(A));
       assertThat(commandExecutor.getPosition()).isEqualTo(expectedPosition);
@@ -54,7 +54,7 @@ public class CommandExecutorTest {
 
     @Test
     void givenMowerFacingWest_andFacingLimit_whenGoForward_thenXCoordinateDoesNotChange() {
-      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(0, 5, W), environment);
+      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(0, 5, W), environment, new ExecuteCommandService());
       Position expectedPosition = new ImmutablePosition(0, 5, W);
       commandExecutor.executeCommands(Collections.singleton(A));
       assertThat(commandExecutor.getPosition()).isEqualTo(expectedPosition);
@@ -62,7 +62,7 @@ public class CommandExecutorTest {
 
     @Test
     void givenMowerFacingEast_whenGoForward_thenXCoordinateDecreasesBy1() {
-      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(1, 5, E), environment);
+      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(1, 5, E), environment, new ExecuteCommandService());
       Position expectedPosition = new ImmutablePosition(2, 5, E);
       commandExecutor.executeCommands(Collections.singleton(A));
       assertThat(commandExecutor.getPosition()).isEqualTo(expectedPosition);
@@ -70,7 +70,7 @@ public class CommandExecutorTest {
 
     @Test
     void givenMowerFacingEast_andFacingBorder_whenGoForward_thenXCoordinateDoesNotChange() {
-      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(5, 5, E), environment);
+      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(5, 5, E), environment, new ExecuteCommandService());
       Position expectedPosition = new ImmutablePosition(5, 5, E);
       commandExecutor.executeCommands(Collections.singleton(A));
       assertThat(commandExecutor.getPosition()).isEqualTo(expectedPosition);
@@ -78,7 +78,7 @@ public class CommandExecutorTest {
 
     @Test
     void givenMowerFacingSouth_whenGoForward_thenYCoordinateDecreasesBy1() {
-      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(1, 5, S), environment);
+      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(1, 5, S), environment, new ExecuteCommandService());
       Position expectedPosition = new ImmutablePosition(1, 4, S);
       commandExecutor.executeCommands(Collections.singleton(A));
       assertThat(commandExecutor.getPosition()).isEqualTo(expectedPosition);
@@ -86,7 +86,7 @@ public class CommandExecutorTest {
 
     @Test
     void givenMowerFacingSouth_andFacingBorder_whenGoForward_thenYCoordinateDoesNotChange() {
-      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(1, 0, S), environment);
+      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(1, 0, S), environment, new ExecuteCommandService());
       Position expectedPosition = new ImmutablePosition(1, 0, S);
       commandExecutor.executeCommands(Collections.singleton(A));
       assertThat(commandExecutor.getPosition()).isEqualTo(expectedPosition);

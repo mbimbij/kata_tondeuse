@@ -21,6 +21,6 @@ public class CommandExecutorFactory {
     int y = Integer.parseInt(strings[1]);
     Orientation orientation = Orientation.valueOf(strings[2]);
     ImmutablePosition initialPosition = new ImmutablePosition(x, y, orientation);
-    return new CommandExecutor(initialPosition, environment);
+    return new CommandExecutor(initialPosition, environment, new ExecuteCommandService());
   }
 }
