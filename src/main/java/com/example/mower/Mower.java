@@ -7,12 +7,10 @@ public class Mower implements IExecuteCommands {
   private Position initialPosition;
   private Position finalPosition;
   private Environment environment;
-  private ExecuteCommandService executeCommandService;
 
-  public Mower(Position initialPosition, Environment environment, ExecuteCommandService executeCommandService) {
+  public Mower(Position initialPosition, Environment environment) {
     this.initialPosition = initialPosition;
     this.environment = environment;
-    this.executeCommandService = executeCommandService;
   }
 
   @Override
@@ -28,9 +26,7 @@ public class Mower implements IExecuteCommands {
   public void executeCommands(Collection<Command> commands) {
     finalPosition = commands.stream()
         .reduce(initialPosition,
-            (position, command) -> command.execute
-                .apply(executeCommandService)
-                .apply(position, environment),
+            (position, command) -> command.execute(position,environment),
             (position, position2) -> position);
   }
 }

@@ -11,6 +11,6 @@ public class MowerFactory implements CommandExecutorFactory {
     int y = Integer.parseInt(strings[1]);
     Orientation orientation = Orientation.valueOf(strings[2]);
     Position initialPosition = new Position(x, y, orientation);
-    return new Mower(initialPosition, environment, new ExecuteCommandService());
+    return new Mower(initialPosition, environment);
   }
 }

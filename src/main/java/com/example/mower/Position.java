@@ -45,4 +45,20 @@ public class Position {
       case W -> toBuilder().orientation(N).build();
     };
   }
+
+  Position goDown() {
+    return new Position(getX(), getY() - 1, getOrientation());
+  }
+
+  Position goRight() {
+    return new Position(getX() + 1, getY(), getOrientation());
+  }
+
+  Position goLeft() {
+    return new Position(getX() - 1, getY(), getOrientation());
+  }
+
+  Position goUp() {
+    return new Position(getX(), getY() + 1, getOrientation());
+  }
 }
