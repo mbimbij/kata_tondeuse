@@ -52,14 +52,14 @@ public class CommandExecutorTest {
       assertThat(commandExecutor.getPosition()).isEqualTo(expectedPosition);
     }
 
-//    @Test
-//    void givenMowerFacingWest_andFacingLimit_whenGoForward_thenXCoordinateDoesNotChange() {
-//      Mower mower = new Mower(0, 5, W, environment);
-//      Position expectedPosition = new Position(0, 5, W);
-//      mower.execute(A);
-//      assertThat(mower.getPosition()).isEqualTo(expectedPosition);
-//    }
-//
+    @Test
+    void givenMowerFacingWest_andFacingLimit_whenGoForward_thenXCoordinateDoesNotChange() {
+      CommandExecutor commandExecutor = new CommandExecutor(new Position(0, 5, W), environment);
+      Position expectedPosition = new Position(0, 5, W);
+      commandExecutor.executeCommands(Collections.singleton(A));
+      assertThat(commandExecutor.getPosition()).isEqualTo(expectedPosition);
+    }
+
 //    @Test
 //    void givenMowerFacingEast_whenGoForward_thenXCoordinateDecreasesBy1() {
 //      Mower mower = new Mower(1, 5, E, environment);
