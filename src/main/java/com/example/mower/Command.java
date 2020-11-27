@@ -4,38 +4,19 @@ public enum Command {
   A{
     @Override
     public Position execute(Position position, Environment environment) {
-      return goForward(position, environment);
-    }
-
-    private Position goForward(Position position, Environment environment) {
-      if (position.isFacingNorth() && !isFacingNorthBorder(position, environment)) {
+      if (position.isFacingNorth() && position.getY() < environment.getYLimit()) {
         return position.goUp();
-      } else if (position.isFacingWest() && !isFacingWestBorder(position)) {
+      } else if (position.isFacingWest() && position.getX() > 0) {
         return position.goLeft();
-      } else if (position.isFacingEast() && !isFacingEastBorder(position, environment)) {
+      } else if (position.isFacingEast() && position.getX() < environment.getXLimit()) {
         return position.goRight();
-      } else if (position.isFacingSouth() && !isFacingSouthBorder(position)) {
+      } else if (position.isFacingSouth() && position.getY() > 0) {
         return position.goDown();
       } else {
         return position;
       }
     }
 
-    private boolean isFacingSouthBorder(Position position) {
-      return position.getY() <= 0;
-    }
-
-    private boolean isFacingEastBorder(Position position, Environment environment) {
-      return position.getX() >= environment.getXLimit();
-    }
-
-    private boolean isFacingWestBorder(Position position) {
-      return position.getX() <= 0;
-    }
-
-    private boolean isFacingNorthBorder(Position position, Environment environment) {
-      return position.getY() >= environment.getYLimit();
-    }
   },G {
     @Override
     public Position execute(Position position, Environment environment) {
