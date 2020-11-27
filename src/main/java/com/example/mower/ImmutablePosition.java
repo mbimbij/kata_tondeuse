@@ -1,5 +1,6 @@
 package com.example.mower;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
 
@@ -22,6 +23,11 @@ public class ImmutablePosition implements Position {
   }
 
   public ImmutablePosition turnRight() {
-    return null;
+    return switch (orientation) {
+      case N -> toBuilder().orientation(E).build();
+      case E -> toBuilder().orientation(S).build();
+      case S -> toBuilder().orientation(W).build();
+      case W -> toBuilder().orientation(N).build();
+    };
   }
 }
