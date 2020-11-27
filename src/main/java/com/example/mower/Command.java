@@ -5,8 +5,8 @@ import java.util.function.Function;
 
 public enum Command {
   A(executeCommandService -> executeCommandService::goForward),
-  G(null),
-  D(null);
+  G(executeCommandService -> (immutablePosition, environment) -> immutablePosition.turnLeft()),
+  D(executeCommandService -> (immutablePosition, environment) -> immutablePosition.turnRight());
 
   public final Function<ExecuteCommandService, BiFunction<ImmutablePosition, Environment, ImmutablePosition>> execute;
 

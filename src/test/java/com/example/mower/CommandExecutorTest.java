@@ -92,17 +92,17 @@ public class CommandExecutorTest {
       assertThat(commandExecutor.getPosition()).isEqualTo(expectedPosition);
     }
   }
-//
-//  @Nested
-//  class TurnLeft{
-//    @Test
-//    void givenMowerFacingNorth_whenTurnLeft_thenFacingWest() {
-//      Mower mower = new Mower(1, 5, N, environment);
-//      Position expectedPosition = new Position(1, 5, W);
-//      mower.execute(G);
-//      assertThat(mower.getPosition()).isEqualTo(expectedPosition);
-//    }
-//
+
+  @Nested
+  class TurnLeft{
+    @Test
+    void givenMowerFacingNorth_whenTurnLeft_thenFacingWest() {
+      CommandExecutor commandExecutor = new CommandExecutor(new ImmutablePosition(1, 5, N), environment, new ExecuteCommandService());
+      Position expectedPosition = new ImmutablePosition(1, 5, W);
+      commandExecutor.executeCommands(Collections.singleton(G));
+      assertThat(commandExecutor.getPosition()).isEqualTo(expectedPosition);
+    }
+
 //    @Test
 //    void givenMowerFacingWest_whenTurnLeft_thenFacingSouth() {
 //      Mower mower = new Mower(1, 5, W, environment);
@@ -126,7 +126,7 @@ public class CommandExecutorTest {
 //      mower.execute(G);
 //      assertThat(mower.getPosition()).isEqualTo(expectedPosition);
 //    }
-//  }
+  }
 //
 //  @Nested
 //  class TurnRight{

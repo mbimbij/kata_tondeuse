@@ -2,10 +2,6 @@ package com.example.mower;
 
 public class ExecuteCommandService {
 
-  public ImmutablePosition executeCommand(Command command, ImmutablePosition position, Environment environment) {
-    return command.execute.apply(this).apply(position, environment);
-  }
-
   public ImmutablePosition goForward(Position position, Environment environment) {
     if (position.isFacingNorth() && !isFacingNorthBorder(position, environment)) {
       return goUp(position);
