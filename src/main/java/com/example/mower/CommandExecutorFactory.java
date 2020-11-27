@@ -20,7 +20,7 @@ public class CommandExecutorFactory {
     int x = Integer.parseInt(strings[0]);
     int y = Integer.parseInt(strings[1]);
     Orientation orientation = Orientation.valueOf(strings[2]);
-    Position initialPosition = new Position(x, y, orientation);
+    ImmutablePosition initialPosition = new ImmutablePosition(x, y, orientation);
     return new CommandExecutor(initialPosition, environment);
   }
 }

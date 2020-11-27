@@ -6,12 +6,12 @@ import static com.example.mower.Orientation.*;
 
 public class Mower implements IExecuteCommands {
 
-  private Position position;
+  private MutablePosition position;
   private Environment environment;
 
   public Mower(int x, int y, Orientation orientation, Environment environment) {
     this.environment = environment;
-    this.position = new Position(x, y, orientation);
+    this.position = new MutablePosition(x, y, orientation);
   }
 
   public Position getPosition() {

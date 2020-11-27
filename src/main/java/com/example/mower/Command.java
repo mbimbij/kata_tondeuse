@@ -5,11 +5,11 @@ import static com.example.mower.Orientation.*;
 public enum Command {
   A {
     @Override
-    public Position execute(Position currentPosition, Environment environment) {
+    public ImmutablePosition execute(ImmutablePosition currentPosition, Environment environment) {
       return goForward(currentPosition, environment);
     }
 
-    private Position goForward(Position position, Environment environment) {
+    private ImmutablePosition goForward(Position position, Environment environment) {
       if (isFacingNorth(position) && !isFacingNorthBorder(position, environment)) {
         return goForwardUp(position);
       } else if (isFacingWest(position) && !isFacingWestBorder(position)) {
@@ -19,12 +19,12 @@ public enum Command {
       } else if (isFacingSouth(position) && !isFacingSouthBorder(position, environment)) {
         return goForwardDown(position);
       } else {
-        return new Position(position.getX(), position.getY(), position.getOrientation());
+        return new ImmutablePosition(position.getX(), position.getY(), position.getOrientation());
       }
     }
 
-    private Position goForwardDown(Position position) {
-      return new Position(position.getX(), position.getY() - 1, position.getOrientation());
+    private ImmutablePosition goForwardDown(Position position) {
+      return new ImmutablePosition(position.getX(), position.getY() - 1, position.getOrientation());
     }
 
     private boolean isFacingSouthBorder(Position position, Environment environment) {
@@ -35,8 +35,8 @@ public enum Command {
       return position.getOrientation() == S;
     }
 
-    private Position goForwardRight(Position position) {
-      return new Position(position.getX() + 1, position.getY(), position.getOrientation());
+    private ImmutablePosition goForwardRight(Position position) {
+      return new ImmutablePosition(position.getX() + 1, position.getY(), position.getOrientation());
     }
 
     private boolean isFacingEastBorder(Position position, Environment environment) {
@@ -47,8 +47,8 @@ public enum Command {
       return position.getOrientation() == E;
     }
 
-    private Position goForwardLeft(Position position) {
-      return new Position(position.getX() - 1, position.getY(), position.getOrientation());
+    private ImmutablePosition goForwardLeft(Position position) {
+      return new ImmutablePosition(position.getX() - 1, position.getY(), position.getOrientation());
     }
 
     private boolean isFacingWestBorder(Position position) {
@@ -59,8 +59,8 @@ public enum Command {
       return position.getOrientation() == W;
     }
 
-    private Position goForwardUp(Position position) {
-      return new Position(position.getX(), position.getY() + 1, position.getOrientation());
+    private ImmutablePosition goForwardUp(Position position) {
+      return new ImmutablePosition(position.getX(), position.getY() + 1, position.getOrientation());
     }
 
     private boolean isFacingNorthBorder(Position position, Environment environment) {
@@ -72,15 +72,15 @@ public enum Command {
     }
   }, G {
     @Override
-    public Position execute(Position currentPosition, Environment environment) {
+    public ImmutablePosition execute(ImmutablePosition currentPosition, Environment environment) {
       return null;
     }
   }, D {
     @Override
-    public Position execute(Position currentPosition, Environment environment) {
+    public ImmutablePosition execute(ImmutablePosition currentPosition, Environment environment) {
       return null;
     }
   };
 
-  public abstract Position execute(Position currentPosition, Environment environment);
+  public abstract ImmutablePosition execute(ImmutablePosition currentPosition, Environment environment);
 }

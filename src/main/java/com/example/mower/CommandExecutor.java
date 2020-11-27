@@ -4,10 +4,10 @@ import java.util.Collection;
 
 public class CommandExecutor implements IExecuteCommands {
 
-  private Position currentPosition;
+  private ImmutablePosition currentPosition;
   private Environment environment;
 
-  public CommandExecutor(Position initialPosition, Environment environment) {
+  public CommandExecutor(ImmutablePosition initialPosition, Environment environment) {
     this.currentPosition = initialPosition;
     this.environment = environment;
   }
@@ -19,6 +19,7 @@ public class CommandExecutor implements IExecuteCommands {
 
   @Override
   public void executeCommands(Collection<Command> commands) {
-    currentPosition = commands.stream().map(command -> command.execute(currentPosition, environment)).reduce((p1,p2) -> p2).orElse(currentPosition);
+    currentPosition = commands.stream().map(command -> command.execute(currentPosition, environment)).reduce((p1,p2) -> p2)
+        .orElse(currentPosition);
   }
 }
