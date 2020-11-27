@@ -1,6 +1,6 @@
 package com.example.mower;
 
-public class CommandExecutorFactoryImpl implements CommandExecutorFactory {
+public class MowerFactory implements CommandExecutorFactory {
   @Override
   public IExecuteCommands createCommandExecutor(String mowerString, Environment environment) {
     String[] strings = mowerString.split(" ");
@@ -10,7 +10,7 @@ public class CommandExecutorFactoryImpl implements CommandExecutorFactory {
     int x = Integer.parseInt(strings[0]);
     int y = Integer.parseInt(strings[1]);
     Orientation orientation = Orientation.valueOf(strings[2]);
-    ImmutablePosition initialPosition = new ImmutablePosition(x, y, orientation);
-    return new CommandExecutor(initialPosition, environment, new ExecuteCommandService());
+    Position initialPosition = new Position(x, y, orientation);
+    return new Mower(initialPosition, environment, new ExecuteCommandService());
   }
 }

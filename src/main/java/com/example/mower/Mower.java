@@ -2,14 +2,14 @@ package com.example.mower;
 
 import java.util.Collection;
 
-public class CommandExecutor implements IExecuteCommands {
+public class Mower implements IExecuteCommands {
 
   private Position initialPosition;
   private Position finalPosition;
   private Environment environment;
   private ExecuteCommandService executeCommandService;
 
-  public CommandExecutor(Position initialPosition, Environment environment, ExecuteCommandService executeCommandService) {
+  public Mower(Position initialPosition, Environment environment, ExecuteCommandService executeCommandService) {
     this.initialPosition = initialPosition;
     this.environment = environment;
     this.executeCommandService = executeCommandService;

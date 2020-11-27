@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class CommandExecutorApplicationTest {
+public class MowerApplicationTest {
 
   private final String inputFilePathString = "src/test/resources/testInputFile.txt";
   private final String outputFilePathString = "src/test/resources/testOutputFile.txt";
