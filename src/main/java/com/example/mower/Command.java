@@ -8,9 +8,9 @@ public enum Command {
   G(executeCommandService -> (immutablePosition, environment) -> immutablePosition.turnLeft()),
   D(executeCommandService -> (immutablePosition, environment) -> immutablePosition.turnRight());
 
-  public final Function<ExecuteCommandService, BiFunction<ImmutablePosition, Environment, ImmutablePosition>> execute;
+  public final Function<ExecuteCommandService, BiFunction<Position, Environment, Position>> execute;
 
-  Command(Function<ExecuteCommandService, BiFunction<ImmutablePosition, Environment, ImmutablePosition>> execute) {
+  Command(Function<ExecuteCommandService, BiFunction<Position, Environment, Position>> execute) {
     this.execute = execute;
   }
 }

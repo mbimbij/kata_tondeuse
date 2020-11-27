@@ -1,25 +1,48 @@
 package com.example.mower;
 
+import lombok.Builder;
+import lombok.Value;
+
 import static com.example.mower.Orientation.*;
 
-public interface Position {
-  int getX();
-  int getY();
-  Orientation getOrientation();
+@Value
+@Builder(toBuilder = true)
+public class Position {
+  int x;
+  int y;
+  Orientation orientation;
 
-  default boolean isFacingNorth() {
+  boolean isFacingNorth() {
     return getOrientation() == N;
   }
 
-  default boolean isFacingSouth() {
+  boolean isFacingSouth() {
     return getOrientation() == S;
   }
 
-  default boolean isFacingEast() {
+  boolean isFacingEast() {
     return getOrientation() == E;
   }
 
-  default boolean isFacingWest() {
+  boolean isFacingWest() {
     return getOrientation() == W;
+  }
+
+  public Position turnLeft() {
+    return switch (orientation) {
+      case N -> toBuilder().orientation(W).build();
+      case W -> toBuilder().orientation(S).build();
+      case S -> toBuilder().orientation(E).build();
+      case E -> toBuilder().orientation(N).build();
+    };
+  }
+
+  public Position turnRight() {
+    return switch (orientation) {
+      case N -> toBuilder().orientation(E).build();
+      case E -> toBuilder().orientation(S).build();
+      case S -> toBuilder().orientation(W).build();
+      case W -> toBuilder().orientation(N).build();
+    };
   }
 }

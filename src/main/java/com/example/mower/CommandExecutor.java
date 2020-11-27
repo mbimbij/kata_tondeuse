@@ -4,12 +4,12 @@ import java.util.Collection;
 
 public class CommandExecutor implements IExecuteCommands {
 
-  private ImmutablePosition initialPosition;
-  private ImmutablePosition finalPosition;
+  private Position initialPosition;
+  private Position finalPosition;
   private Environment environment;
   private ExecuteCommandService executeCommandService;
 
-  public CommandExecutor(ImmutablePosition initialPosition, Environment environment, ExecuteCommandService executeCommandService) {
+  public CommandExecutor(Position initialPosition, Environment environment, ExecuteCommandService executeCommandService) {
     this.initialPosition = initialPosition;
     this.environment = environment;
     this.executeCommandService = executeCommandService;
