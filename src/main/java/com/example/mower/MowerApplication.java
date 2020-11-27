@@ -1,6 +1,7 @@
 package com.example.mower;
 
 import io.vavr.control.Try;
+import lombok.SneakyThrows;
 
 import java.io.FileNotFoundException;
 import java.nio.file.Files;
@@ -15,30 +16,30 @@ import java.util.stream.Collectors;
 public class MowerApplication {
   private final Path inputFilePath;
   private final Path outputFilePath;
+  private final CommandExecutorFactory commandExecutorFactory;
 
-  public MowerApplication(String inputFilePathString, String outputFilePathString) {
+  @SneakyThrows
+  public MowerApplication(String inputFilePathString, String outputFilePathString, CommandExecutorFactory commandExecutorFactory) {
     inputFilePath = Paths.get(inputFilePathString);
     if (!Files.exists(inputFilePath)) {
-      throw new RuntimeException(new FileNotFoundException(inputFilePathString));
+      throw new FileNotFoundException(inputFilePathString);
     }
 
     outputFilePath = Paths.get(outputFilePathString);
     if (!Files.exists(outputFilePath)) {
       Try.of(() -> Files.createFile(outputFilePath)).get();
     }
+    this.commandExecutorFactory = commandExecutorFactory;
   }
 
   public void run() {
     List<String> inputFileContent = Try.of(() -> Files.readAllLines(inputFilePath)).get();
-    if (inputFileContent.isEmpty()) {
-      throw new FileFormatException(inputFilePath.toString() + " is empty");
-    }
-    String environmentString = inputFileContent.stream().findFirst().orElseThrow(() -> new FileFormatException("input is unexpectedly empty"));
+    String environmentString = inputFileContent.stream().findFirst().orElseThrow(() -> new FileFormatException(inputFilePath.toString() + " is empty"));
     Environment environment = createEnvironment(environmentString);
     Iterator<String> inputFileIterator = inputFileContent.stream().skip(1).iterator();
     while (inputFileIterator.hasNext()) {
-      Mower mower = createMower(inputFileIterator.next(), environment);
-      createInstructions(inputFileIterator.next()).forEach(mower::execute);
+      IExecuteCommands mower = commandExecutorFactory.createMower(inputFileIterator.next(), environment);
+      mower.executeCommands(createInstructions(inputFileIterator.next()));
       Try.of(() -> Files.writeString(outputFilePath, formatPosition(mower.getPosition()) + System.lineSeparator(), StandardOpenOption.APPEND));
     }
   }
@@ -58,18 +59,6 @@ public class MowerApplication {
     int yLimit = upperRightCornerCoordinates[1];
     return new Environment(xLimit, yLimit);
   }
-
-  public Mower createMower(String mowerString, Environment environment) {
-    String[] strings = mowerString.split(" ");
-    if (strings.length != 3) {
-      throw new FileFormatException(String.format("\"%s\" is not a valid description of mower. It should have only 3 elements", mowerString));
-    }
-    int x = Integer.parseInt(strings[0]);
-    int y = Integer.parseInt(strings[1]);
-    Orientation orientation = Orientation.valueOf(strings[2]);
-    return new Mower(x, y, orientation, environment);
-  }
-
 
   public List<Command> createInstructions(String commandsString) {
     return Arrays.stream(commandsString.split("|"))

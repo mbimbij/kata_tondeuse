@@ -4,6 +4,7 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -23,10 +24,12 @@ public class MowerApplicationTest {
 
   private final String inputFilePathString = "src/test/resources/testInputFile.txt";
   private final String outputFilePathString = "src/test/resources/testOutputFile.txt";
+  private MowerApplication mowerApplication;
 
   @BeforeEach
   void setUp() throws IOException {
     clearOuputFile();
+    mowerApplication = new MowerApplication(inputFilePathString, outputFilePathString, new MowerFactory());
   }
 
   private void clearOuputFile() throws IOException {
@@ -40,19 +43,18 @@ public class MowerApplicationTest {
 
   @Test
   void givenExistingFile_whenCreateMowerApplication_thenExceptionIsNotThrown() {
-    assertDoesNotThrow(() -> new MowerApplication(inputFilePathString, outputFilePathString));
+    assertDoesNotThrow(() -> new MowerApplication(inputFilePathString, outputFilePathString, new MowerFactory()));
   }
 
   @Test
   void givenNonExistingFile_whenCreateMowerApplication_thenExceptionIsThrown() {
     String inputFilePathString = "src/test/resources/notExistingFile.txt";
-    assertThrows(RuntimeException.class, () -> new MowerApplication(inputFilePathString, outputFilePathString));
+    assertThrows(FileNotFoundException.class, () -> new MowerApplication(inputFilePathString, outputFilePathString, new MowerFactory()));
   }
 
   @Test
   void canCreateEnvironmentFromString() {
     String environmentString = "5 6";
-    MowerApplication mowerApplication = new MowerApplication(inputFilePathString, outputFilePathString);
     Environment environment = mowerApplication.createEnvironment(environmentString);
     SoftAssertions.assertSoftly(softAssertions -> {
       softAssertions.assertThat(environment.getXLimit()).isEqualTo(5);
@@ -63,17 +65,15 @@ public class MowerApplicationTest {
   @Test
   void canCreateMowerFromString() {
     String mowerString = "1 2 N";
-    MowerApplication mowerApplication = new MowerApplication(inputFilePathString, outputFilePathString);
-    Mower mower = mowerApplication.createMower(mowerString, null);
+    IExecuteCommands executeCommands = new MowerFactory().createMower(mowerString, null);
     Position expectedInitialPosition = new Position(1, 2, N);
-    assertThat(mower.getPosition()).isEqualTo(expectedInitialPosition);
+    assertThat(executeCommands.getPosition()).isEqualTo(expectedInitialPosition);
   }
 
   @Test
   void canCreateCommandsFromString() {
     // GIVEN
     String commandsString = "GAGAGAGAA";
-    MowerApplication mowerApplication = new MowerApplication(inputFilePathString, outputFilePathString);
 
     // WHEN
     List<Command> commands = mowerApplication.createInstructions(commandsString);
@@ -84,9 +84,6 @@ public class MowerApplicationTest {
 
   @Test
   void givenTestInputFile_whenRun_thenOutputFileHasExpectedContent() throws IOException {
-    // GIVEN
-    MowerApplication mowerApplication = new MowerApplication(inputFilePathString, outputFilePathString);
-
     // WHEN
     mowerApplication.run();
 
