@@ -1,7 +1,7 @@
 package com.example.mower;
 
 public enum Command {
-  A{
+  A {
     @Override
     public Position execute(Position position, Environment environment) {
       if (position.isFacingNorth() && position.getY() < environment.getYLimit()) {
@@ -17,12 +17,12 @@ public enum Command {
       }
     }
 
-  },G {
+  }, G {
     @Override
     public Position execute(Position position, Environment environment) {
       return position.turnLeft();
     }
-  },D {
+  }, D {
     @Override
     public Position execute(Position position, Environment environment) {
       return position.turnRight();

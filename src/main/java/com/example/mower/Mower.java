@@ -29,5 +29,6 @@ public class Mower implements IExecuteCommands {
             (position, command) -> command.execute(position,environment),
             (position, position2) -> position);
   }
+
 }
 
